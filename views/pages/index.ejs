@@ -12,10 +12,20 @@
         <p>你可以填写以下表单加入我们</p>
       </div>
       <form action="#">
+        <!-- name -->
         <div class="form-element">
           <label for="姓名"><img src="/images/user.svg" alt="姓名" />姓名</label>
-          <input type="text" id="姓名" />
+          <input
+            type="text"
+            id="姓名"
+            name="姓名"
+            required
+            maxlength="20"
+            oninvalid="this.setCustomValidity('请留下你的姓名！')"
+            oninput="this.setCustomValidity('')"
+          />
         </div>
+        <!-- gender -->
         <div class="form-element">
           <label for="性别"><img src="/images/user.svg" alt="性别" />性别</label>
           <select name="性别" id="性别">
@@ -23,21 +33,54 @@
             <option value="女">女</option>
           </select>
         </div>
+        <!-- phone number -->
         <div class="form-element">
           <label for="手机"><img src="/images/phone.svg" alt="手机" />手机</label>
-          <input type="text" id="手机" />
+          <input
+            type="text"
+            id="手机"
+            name="手机"
+            pattern="[0-9]{11}"
+            required
+            oninvalid="this.setCustomValidity('手机号格式错误！')"
+            oninput="this.setCustomValidity('')"
+          />
         </div>
         <div class="form-element">
           <label for="QQ"><img src="/images/qq.svg" alt="QQ" />QQ</label>
-          <input type="text" id="QQ" />
+          <input
+            type="text"
+            id="QQ"
+            name="QQ"
+            required
+            maxlength="20"
+            oninvalid="this.setCustomValidity('请留下你的QQ！')"
+            oninput="this.setCustomValidity('')"
+          />
         </div>
         <div class="form-element">
           <label for="邮箱"><img src="/images/email.svg" alt="邮箱" />邮箱</label>
-          <input type="email" id="邮箱" />
+          <input
+            type="email"
+            id="邮箱"
+            name="邮箱"
+            required
+            maxlength="20"
+            oninvalid="this.setCustomValidity('邮箱格式错误')"
+            oninput="this.setCustomValidity('')"
+          />
         </div>
         <div class="form-element">
           <label for="专业"><img src="/images/profession.svg" alt="专业" />专业</label>
-          <input type="text" id="专业" />
+          <input
+            type="text"
+            id="专业"
+            name="专业"
+            required
+            maxlength="20"
+            oninvalid="this.setCustomValidity('你的专业是什么啊！')"
+            oninput="this.setCustomValidity('')"
+          />
         </div>
         <div class="form-element">
           <label for="第一志愿"><img src="/images/options.svg" alt="第一志愿" />第一志愿</label>
@@ -70,7 +113,16 @@
         </div>
         <div class="form-element">
           <label for="自我介绍"><img src="/images/introduce.svg" alt="自我介绍" />自我介绍</label>
-          <textarea type="text" id="自我介绍"></textarea>
+          <textarea
+            type="text"
+            id="自我介绍"
+            name="自我介绍"
+            required
+            minlength="4"
+            maxlength="500"
+            oninvalid="this.setCustomValidity('说点什么吧，让我们了解不一样的你！')"
+            oninput="this.setCustomValidity('')"
+          ></textarea>
         </div>
         <button type="submit">提交</button>
       </form>
