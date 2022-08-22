@@ -28,12 +28,12 @@
         <!-- phone number -->
         <div class="form-element">
           <label for="手机"><img src="/images/phone.svg" alt="手机" />手机</label>
-          <input type="number" id="手机" name="手机" maxlength="11" required />
+          <input type="number" id="手机" name="手机" max="99999999999" required />
         </div>
         <!-- QQ -->
         <div class="form-element">
           <label for="QQ"><img src="/images/qq.svg" alt="QQ" />QQ</label>
-          <input type="number" id="QQ" name="QQ" maxlength="20" required />
+          <input type="number" id="QQ" name="QQ" max="99999999999" required />
         </div>
         <!-- email -->
         <div class="form-element">
@@ -43,7 +43,7 @@
         <!-- sutudent id -->
         <div class="form-element">
           <label for="学号"><img src="/images/id.svg" alt="学号" />学号</label>
-          <input type="number" id="学号" name="学号" maxlength="11" required />
+          <input type="number" id="学号" name="学号" max="999999999999" required />
         </div>
         <!-- academy -->
         <div class="form-element">
@@ -90,7 +90,7 @@
         <!-- introduce -->
         <div class="form-element">
           <label for="自我介绍"><img src="/images/introduce.svg" alt="自我介绍" />自我介绍</label>
-          <textarea type="text" id="自我介绍" name="自我介绍" required minlength="4" maxlength="500"></textarea>
+          <textarea type="text" id="自我介绍" name="自我介绍" maxlength="500" required></textarea>
         </div>
         <button type="submit">提交</button>
       </form>
