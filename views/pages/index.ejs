@@ -18,7 +18,10 @@
         </div>
         <div class="form-element">
           <label for="性别"><img src="/images/user.svg" alt="性别" />性别</label>
-          <input type="text" id="性别" />
+          <select name="性别" id="性别">
+            <option value="男">男</option>
+            <option value="女">女</option>
+          </select>
         </div>
         <div class="form-element">
           <label for="手机"><img src="/images/phone.svg" alt="手机" />手机</label>
@@ -38,20 +41,38 @@
         </div>
         <div class="form-element">
           <label for="第一志愿"><img src="/images/options.svg" alt="第一志愿" />第一志愿</label>
-          <input type="text" id="第一志愿" />
+          <select name="第一志愿" id="第一志愿">
+            <option value="组织策划部">组织策划部</option>
+            <option value="技术开发部">技术开发部</option>
+            <option value="科普活动部">科普活动部</option>
+            <option value="新闻宣传部">新闻宣传部</option>
+            <option value="对外联络部">对外联络部</option>
+            <option value="双创联合服务部">双创联合服务部</option>
+          </select>
         </div>
         <div class="form-element">
           <label for="第二志愿"><img src="/images/options.svg" alt="第二志愿" />第二志愿</label>
-          <input type="text" id="第二志愿" />
+          <select name="第二志愿" id="第二志愿">
+            <option value="组织策划部">组织策划部</option>
+            <option value="技术开发部">技术开发部</option>
+            <option value="科普活动部">科普活动部</option>
+            <option value="新闻宣传部">新闻宣传部</option>
+            <option value="对外联络部">对外联络部</option>
+            <option value="双创联合服务部">双创联合服务部</option>
+          </select>
         </div>
         <div class="form-element">
           <label for="调剂"><img src="/images/check.svg" alt="调剂" />是否服从调剂</label>
-          <input type="text" id="调剂" />
+          <select name="调剂" id="调剂">
+            <option value="是">是</option>
+            <option value="否">否</option>
+          </select>
         </div>
         <div class="form-element">
           <label for="自我介绍"><img src="/images/introduce.svg" alt="自我介绍" />自我介绍</label>
-          <input type="text" id="自我介绍" />
+          <textarea type="text" id="自我介绍"></textarea>
         </div>
+        <button type="submit">提交</button>
       </form>
     </div>
     <%- include('../partials/footer'); %>
