@@ -7,7 +7,7 @@
 }
 
 :root {
-  --pri-bcg: linear-gradient(-50deg, #fc00ff, #00dbde);
+  --pri-bcg: linear-gradient(160deg, #c621ef, #164cbe);
   --pri-white: #ffffff;
   --pri-blue: #1c3879;
   --pri-yellow: #24a19c;
@@ -38,8 +38,7 @@ body {
   border-radius: 1rem;
   background: var(--pri-blue);
   padding: 1rem;
-  padding-bottom: 2rem;
-  margin: 1rem;
+  margin: 3rem 0 1rem;
 }
 
 .form .form-header,
@@ -65,13 +64,13 @@ body {
 .form-element {
   display: flex;
   flex-direction: column;
-  margin: 0.5rem 0;
+  margin: 1rem 0;
 }
 
 /* form labe */
 .form-element label {
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 550;
   margin: 0.5rem 0;
 }
 
@@ -102,7 +101,7 @@ body {
 
 /* form button */
 form button {
-  margin: 1rem 0;
+  margin: 2rem 0;
   width: 100%;
   height: 6rem;
   border: 0;
@@ -121,7 +120,7 @@ form button:hover {
 
 /* footer */
 footer {
-  margin: 1rem;
+  margin: 1rem 0 2rem;
 }
 
 @media screen and (max-width: 800px) {
