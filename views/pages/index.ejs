@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/header'); %>
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+  <body>
+    <div class="form">
+      <div class="form-header">
+        <h1>欢迎加入科协!!!</h1>
+        <div></div>
+        <p>你可以填写以下表单加入我们</p>
+      </div>
+      <form action="#">
+        <div class="form-element">
+          <label for="姓名"><img src="/images/user.svg" alt="姓名" />姓名</label>
+          <input type="text" id="姓名" />
+        </div>
+        <div class="form-element">
+          <label for="性别"><img src="/images/user.svg" alt="性别" />性别</label>
+          <input type="text" id="性别" />
+        </div>
+        <div class="form-element">
+          <label for="手机"><img src="/images/phone.svg" alt="手机" />手机</label>
+          <input type="text" id="手机" />
+        </div>
+        <div class="form-element">
+          <label for="QQ"><img src="/images/qq.svg" alt="QQ" />QQ</label>
+          <input type="text" id="QQ" />
+        </div>
+        <div class="form-element">
+          <label for="邮箱"><img src="/images/email.svg" alt="邮箱" />邮箱</label>
+          <input type="email" id="邮箱" />
+        </div>
+        <div class="form-element">
+          <label for="专业"><img src="/images/profession.svg" alt="专业" />专业</label>
+          <input type="text" id="专业" />
+        </div>
+        <div class="form-element">
+          <label for="第一志愿"><img src="/images/options.svg" alt="第一志愿" />第一志愿</label>
+          <input type="text" id="第一志愿" />
+        </div>
+        <div class="form-element">
+          <label for="第二志愿"><img src="/images/options.svg" alt="第二志愿" />第二志愿</label>
+          <input type="text" id="第二志愿" />
+        </div>
+        <div class="form-element">
+          <label for="调剂"><img src="/images/check.svg" alt="调剂" />是否服从调剂</label>
+          <input type="text" id="调剂" />
+        </div>
+        <div class="form-element">
+          <label for="自我介绍"><img src="/images/introduce.svg" alt="自我介绍" />自我介绍</label>
+          <input type="text" id="自我介绍" />
+        </div>
+      </form>
+    </div>
+    <%- include('../partials/footer'); %>
+  </body>
+</html>
