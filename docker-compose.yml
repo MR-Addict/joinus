@@ -1,7 +1,7 @@
 version: '3'
 services:
-  punch:
-    image: mraddict063/punch
-    container_name: punch
+  joinus:
+    image: mraddict063/joinus
+    container_name: joinus
     network_mode: "host"
     restart: unless-stopped
