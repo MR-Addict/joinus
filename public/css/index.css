@@ -10,7 +10,7 @@
   --pri-bcg: linear-gradient(160deg, #c621ef, #164cbe);
   --pri-white: #ffffff;
   --pri-blue: #1c3879;
-  --pri-yellow: #24a19c;
+  --pri-green: #24a19c;
 }
 
 html {
@@ -111,7 +111,7 @@ form button {
   font-size: 2rem;
   font-weight: bold;
   color: var(--pri-white);
-  background: var(--pri-yellow);
+  background: var(--pri-green);
 }
 
 form button:hover {

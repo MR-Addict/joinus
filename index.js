@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  res.render("pages/index");
+  res.render("pages/success");
   console.log(new Date().toLocaleString() + " Form submit");
 });
 

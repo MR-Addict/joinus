@@ -1,5 +1,4 @@
 /* validaiotn listener */
-
 // name input validation
 const name_input = document.querySelector('input[name="姓名"]');
 name_input.addEventListener("invalid", function (event) {
@@ -144,24 +143,3 @@ introduce_input.addEventListener("input", function (event) {
   }
   event.target.reportValidity();
 });
-
-/* validation */
-// function validateForm() {
-//   // prevernt submit
-
-//   if (document.getElementById("手机").value.length != 11) {
-//     document.getElementById("手机").setCustomValidity("手机号码格式错误！");
-//     document.getElementById("手机").reportValidity();
-//     return false;
-//   }
-//   if (document.getElementById("学号").value.length != 12) {
-//     document.getElementById("学号").setCustomValidity("学号格式错误！");
-//     return false;
-//   }
-//   console.log(document.getElementById("第一志愿").value);
-//   console.log(document.getElementById("第二志愿").value);
-//   if (document.getElementById("第一志愿").value == document.getElementById("第二志愿").value) {
-//     document.getElementById("第一志愿").setCustomValidity("请修改第一或第二志愿！");
-//     return false;
-//   }
-// }
