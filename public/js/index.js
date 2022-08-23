@@ -157,3 +157,5 @@ fv.register("#自我介绍", (value, inputField) => {
 
 // 第一志愿
 fv.registerForSelects();
+
+window.fv = fv;

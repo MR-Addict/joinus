@@ -7,12 +7,23 @@ export default class formValidator {
       e.preventDefault();
       if (!this.hasErrors) {
         this.form.submit();
+      } else {
+        this.scrollToFirstError();
       }
     });
   }
 
   get hasErrors() {
     return this.inputsWithErrors.size > 0;
+  }
+
+  scrollToFirstError() {
+    const offset = [];
+    this.inputsWithErrors.forEach((prop) => {
+      offset.push(prop.offsetTop);
+    });
+    document.body.scrollTop = Math.min(...offset) - 30; // For Safari
+    document.documentElement.scrollTop = Math.min(...offset) - 30; // For Chrome, Firefox, IE and Opera
   }
 
   register(selector, check) {
