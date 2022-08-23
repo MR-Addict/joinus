@@ -29,8 +29,9 @@ export default class formValidator {
       }
     };
     inputField.addEventListener("change", () => execute());
-    execute(true);
+    document.querySelector('button[type="submit"]').addEventListener("click", () => execute());
   }
+
   registerForSelects() {
     const select1 = document.getElementById("第一志愿");
     const select2 = document.getElementById("第二志愿");
@@ -54,6 +55,6 @@ export default class formValidator {
     };
     select1.addEventListener("change", () => execute());
     select2.addEventListener("change", () => execute());
-    execute(true);
+    document.querySelector('button[type="submit"]').addEventListener("click", () => execute());
   }
 }
