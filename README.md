@@ -44,7 +44,7 @@ CREATE USER 'joinus_insert'@'localhost' IDENTIFIED WITH mysql_native_password BY
 授予`joinus_insert`用户权限：
 
 ```sql
-USE joinus_insert; GRANT INSERT ON joinus TO 'joinus_insert'@'localhost' WITH GRANT OPTION;
+USE joinus; GRANT INSERT ON joinus TO 'joinus_insert'@'localhost' WITH GRANT OPTION;
 ```
 
 重置用户权限缓存：
