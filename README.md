@@ -4,11 +4,15 @@
 
 ### 1.1 创建新数据库
 
+#### 1.1.1 创建joinus数据库
+
 创建新的提交数据库，名称为`joinus`：
 
 ```sql
 CREATE DATABASE joinus;
 ```
+
+#### 1.1.2 创建提交Table
 
 创建新的Table，名称为`joinus`：
 
@@ -33,7 +37,23 @@ CREATE TABLE `joinus`(
 );
 ```
 
+#### 1.1.3 创建管理员Table
+
+创建新的Table，名称为`admin`：
+
+```sql
+USE joinus;
+
+CREATE TABLE `admin`(
+    `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(10) NOT NULL,
+    `password` VARCHAR(100) NOT NULL
+);
+```
+
 ### 1.2 创建新用户
+
+#### 1.2.1 创建joinus_insert用户
 
 创建新的MySQL用户，用户名为`joinus_insert`，密码为`password`：
 
@@ -46,6 +66,26 @@ CREATE USER 'joinus_insert'@'localhost' IDENTIFIED WITH mysql_native_password BY
 ```sql
 USE joinus; GRANT INSERT ON joinus TO 'joinus_insert'@'localhost' WITH GRANT OPTION;
 ```
+
+#### 1.2.2 创建joinus_select用户
+
+创建新的MySQL用户，用户名为`joinus_select`，密码为`password`：
+
+```sql
+CREATE USER 'joinus_select'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+```
+
+授予`joinus_select`用户权限：
+
+```sql
+USE joinus; GRANT SELECT ON joinus TO 'joinus_select'@'localhost' WITH GRANT OPTION;
+```
+
+```sql
+USE joinus; GRANT SELECT ON admin TO 'joinus_select'@'localhost' WITH GRANT OPTION;
+```
+
+#### 1.2.3 重置用户权限缓存
 
 重置用户权限缓存：
 
