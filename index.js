@@ -41,6 +41,14 @@ app.post("/", (req, res) => {
   }
 });
 
+app.get("/login", (req, res) => {
+  res.render("pages/login", { error: "" });
+});
+
+app.post("/login", (req, res) => {
+  res.render("pages/login", { error: "" });
+});
+
 // Listening on port 8084
 const port = process.env.PORT || 8084;
 app.listen(port, () => console.log(`Listening on port http://localhost:${port}...`));

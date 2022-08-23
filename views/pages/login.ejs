@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/header'); %>
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+  <body>
+    <form action="/login" method="post" class="form">
+      <% if(error!=''){ %>
+      <p class="login-err-msg"><%= error %></p>
+      <% } %>
+      <h1>请先登录</h1>
+      <div class="form-element">
+        <label for="username"><img src="/images/user.svg" alt="姓名" />用户名</label>
+        <input type="text" id="username" name="username" />
+        <div class="err-msg"></div>
+      </div>
+      <div class="form-element">
+        <label for="password"><img src="/images/password.svg" alt="姓名" />密码</label>
+        <input type="password" id="password" name="password" />
+        <div class="err-msg"></div>
+      </div>
+      <button type="submit">登录</button>
+    </form>
+    <%- include('../partials/footer'); %>
+  </body>
+  <script src="/js/login.js" type="module"></script>
+</html>
