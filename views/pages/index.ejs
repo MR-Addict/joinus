@@ -11,11 +11,12 @@
         <div></div>
         <p>你可以填写以下表单加入我们</p>
       </div>
-      <form action="/" method="post">
+      <form action="/" method="post" id="form">
         <!-- name -->
         <div class="form-element">
           <label for="姓名"><img src="/images/user.svg" alt="姓名" />姓名</label>
-          <input type="text" id="姓名" name="姓名" required maxlength="20" />
+          <input type="text" id="姓名" name="姓名" />
+          <div class="err-msg"></div>
         </div>
         <!-- gender -->
         <div class="form-element">
@@ -28,32 +29,38 @@
         <!-- phone number -->
         <div class="form-element">
           <label for="手机"><img src="/images/phone.svg" alt="手机" />手机</label>
-          <input type="number" id="手机" name="手机" max="99999999999" required />
+          <input type="number" id="手机" name="手机" />
+          <div class="err-msg"></div>
         </div>
         <!-- QQ -->
         <div class="form-element">
           <label for="QQ"><img src="/images/qq.svg" alt="QQ" />QQ</label>
-          <input type="number" id="QQ" name="QQ" max="99999999999" required />
+          <input type="number" id="QQ" name="QQ" />
+          <div class="err-msg"></div>
         </div>
         <!-- email -->
         <div class="form-element">
           <label for="邮箱"><img src="/images/email.svg" alt="邮箱" />邮箱</label>
-          <input type="email" id="邮箱" name="邮箱" maxlength="20" required />
+          <input type="text" id="邮箱" name="邮箱" />
+          <div class="err-msg"></div>
         </div>
         <!-- sutudent id -->
         <div class="form-element">
           <label for="学号"><img src="/images/id.svg" alt="学号" />学号</label>
-          <input type="number" id="学号" name="学号" max="999999999999" required />
+          <input type="number" id="学号" name="学号" />
+          <div class="err-msg"></div>
         </div>
         <!-- academy -->
         <div class="form-element">
           <label for="学院"><img src="/images/academy.svg" alt="学院" />学院</label>
-          <input type="text" id="学院" name="学院" maxlength="20" required />
+          <input type="text" id="学院" name="学院" />
+          <div class="err-msg"></div>
         </div>
         <!-- profession -->
         <div class="form-element">
           <label for="专业"><img src="/images/profession.svg" alt="专业" />专业</label>
-          <input type="text" id="专业" name="专业" maxlength="20" required />
+          <input type="text" id="专业" name="专业" />
+          <div class="err-msg"></div>
         </div>
         <!-- option 1 -->
         <div class="form-element">
@@ -66,6 +73,7 @@
             <option value="对外联络部">对外联络部</option>
             <option value="双创联合服务部">双创联合服务部</option>
           </select>
+          <div class="err-msg"></div>
         </div>
         <!-- option2 -->
         <div class="form-element">
@@ -78,6 +86,7 @@
             <option value="对外联络部">对外联络部</option>
             <option value="双创联合服务部">双创联合服务部</option>
           </select>
+          <div class="err-msg"></div>
         </div>
         <!-- check -->
         <div class="form-element">
@@ -90,12 +99,13 @@
         <!-- introduce -->
         <div class="form-element">
           <label for="自我介绍"><img src="/images/introduce.svg" alt="自我介绍" />自我介绍</label>
-          <textarea type="text" id="自我介绍" name="自我介绍" maxlength="500" required></textarea>
+          <textarea type="text" id="自我介绍" name="自我介绍"></textarea>
+          <div class="err-msg"></div>
         </div>
         <button type="submit">提交</button>
       </form>
     </div>
     <%- include('../partials/footer'); %>
   </body>
-  <script src="/js/form-validation.js"></script>
+  <script src="/js/index.js" type="module"></script>
 </html>

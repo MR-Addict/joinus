@@ -67,11 +67,19 @@ body {
   margin: 1rem 0;
 }
 
-/* form labe */
+/* form label */
 .form-element label {
   font-size: 1.8rem;
   font-weight: 550;
   margin: 0.5rem 0;
+}
+
+.form-element .err-msg {
+  color: red;
+  width: 100%;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  border-radius: 0.5rem;
 }
 
 .form-element label img {
