@@ -3,13 +3,18 @@ const myChart2 = document.getElementById("myChart2").getContext("2d");
 const myChart3 = document.getElementById("myChart3").getContext("2d");
 const myChart4 = document.getElementById("myChart4").getContext("2d");
 
+const statistics_data = document
+  .getElementById("sta")
+  .innerText.split(" ")
+  .filter((item) => item !== "");
+
 const submitChart = new Chart(myChart1, {
   type: "doughnut", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
     labels: ["今日提交", "所有提交"],
     datasets: [
       {
-        data: [15, 45],
+        data: statistics_data.slice(0, 2),
         backgroundColor: ["rgba(255, 99, 132)", "rgba(54, 162, 235)"],
       },
     ],
@@ -38,7 +43,7 @@ const genderChart = new Chart(myChart2, {
     labels: ["男", "女"],
     datasets: [
       {
-        data: [65, 35],
+        data: statistics_data.slice(2, 4),
         backgroundColor: ["rgba(255, 99, 132)", "rgba(54, 162, 235)"],
       },
     ],
@@ -67,7 +72,7 @@ const groupChart1 = new Chart(myChart3, {
     labels: ["组策", "技术", "科普", "新宣", "外联", "双创"],
     datasets: [
       {
-        data: [65, 35, 65, 35, 65, 35],
+        data: statistics_data.slice(4, 10),
         backgroundColor: [
           "rgba(255, 99, 132)",
           "rgba(54, 162, 235)",
@@ -104,7 +109,7 @@ const groupChart2 = new Chart(myChart4, {
     labels: ["组策", "技术", "科普", "新宣", "外联", "双创"],
     datasets: [
       {
-        data: [65, 35, 65, 35, 65, 35],
+        data: statistics_data.slice(10, 16),
         backgroundColor: [
           "rgba(255, 99, 132)",
           "rgba(54, 162, 235)",
