@@ -49,7 +49,7 @@ function checkNotAuthenticated(req, res, next) {
 
 // Routers
 app.get("/", (req, res) => {
-  res.render("pages/fail");
+  res.render("pages/index");
 });
 
 app.post("/", (req, res) => {
