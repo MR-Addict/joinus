@@ -6,8 +6,13 @@ const myChart4 = document.getElementById("myChart4").getContext("2d");
 const statistics_data = document
   .getElementById("sta")
   .innerText.split(" ")
-  .filter((item) => item !== "");
+  .filter((item) => item !== "")
+  .map((str) => {
+    return Number(str);
+  });
 
+doughnut_options.plugins.title.text = "提交";
+Chart.register(ChartDataLabels);
 const submitChart = new Chart(myChart1, {
   type: "doughnut", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
@@ -19,24 +24,10 @@ const submitChart = new Chart(myChart1, {
       },
     ],
   },
-  options: {
-    plugins: {
-      title: {
-        display: true,
-        text: "提交",
-        position: "bottom",
-        font: {
-          size: 16,
-        },
-      },
-      legend: {
-        display: true,
-        position: "top",
-      },
-    },
-  },
+  options: doughnut_options,
 });
 
+doughnut_options.plugins.title.text = "男女比";
 const genderChart = new Chart(myChart2, {
   type: "doughnut", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
@@ -48,24 +39,10 @@ const genderChart = new Chart(myChart2, {
       },
     ],
   },
-  options: {
-    plugins: {
-      title: {
-        display: true,
-        text: "男女比",
-        position: "bottom",
-        font: {
-          size: 16,
-        },
-      },
-      legend: {
-        display: true,
-        position: "top",
-      },
-    },
-  },
+  options: doughnut_options,
 });
 
+bar_options.plugins.title.text = "第一志愿";
 const groupChart1 = new Chart(myChart3, {
   type: "bar", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
@@ -84,25 +61,10 @@ const groupChart1 = new Chart(myChart3, {
       },
     ],
   },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      title: {
-        display: true,
-        text: "第一志愿",
-        position: "bottom",
-        font: {
-          size: 16,
-        },
-      },
-      legend: {
-        display: false,
-        position: "top",
-      },
-    },
-  },
+  options: bar_options,
 });
 
+bar_options.plugins.title.text = "第二志愿";
 const groupChart2 = new Chart(myChart4, {
   type: "bar", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
@@ -121,21 +83,6 @@ const groupChart2 = new Chart(myChart4, {
       },
     ],
   },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      title: {
-        display: true,
-        text: "第二志愿",
-        position: "bottom",
-        font: {
-          size: 16,
-        },
-      },
-      legend: {
-        display: false,
-        position: "top",
-      },
-    },
-  },
+  plugins: [ChartDataLabels],
+  options: bar_options,
 });
