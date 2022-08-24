@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/header'); %>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="icons">
+        <button type="button" onclick="location.href = '/export'" title="导出筛选结果">
+          <img src="/images/export.svg" alt="export" />
+          <p>导出</p>
+        </button>
+        <button type="button" onclick="location.href = '/logout'" title="退出当前登录">
+          <img src="/images/logout.svg" alt="logout" />
+          <p>退出</p>
+        </button>
+      </div>
+      <h1>提交统计</h1>
+    </div>
+    <%- include('../partials/footer'); %>
+  </body>
+</html>

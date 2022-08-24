@@ -1,0 +1,118 @@
+/* global style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+:root {
+  --pri-bcg: linear-gradient(160deg, #c621ef, #164cbe);
+  --pri-white: #ffffff;
+  --pri-blue: #1c3879;
+  --pri-green: #24a19c;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+/* body style */
+body {
+  width: 100%;
+  height: 100vh;
+  font-size: 1.6rem;
+  background: var(--pri-bcg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  color: var(--pri-white);
+}
+
+/* form style */
+.container {
+  width: 90%;
+  max-width: 50rem;
+  border-radius: 1rem;
+  background: var(--pri-blue);
+  padding: 1rem;
+  margin: 10vh 0 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bar icons */
+.container .icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/*Button effects*/
+.container .icons button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0 1rem;
+  position: relative;
+  color: var(--pri-white);
+}
+
+.container .icons button::after {
+  content: "";
+  left: 0;
+  bottom: -0.4rem;
+  width: 100%;
+  height: 0.3rem;
+  position: absolute;
+  background: var(--pri-green);
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease-in;
+}
+
+.container .icons button:hover::after {
+  transform: scaleX(1);
+}
+
+.container .icons img {
+  height: 2rem;
+  margin-right: 0.5rem;
+}
+
+.container .icons p {
+  font-weight: bold;
+}
+
+/* header */
+.container h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 1rem auto;
+}
+
+/* footer */
+footer {
+  margin: 1rem 0 2rem;
+}
+
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 55%;
+  }
+}

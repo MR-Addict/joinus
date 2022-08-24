@@ -1,8 +1,9 @@
 // Offical packages
 const express = require("express");
-const bodyParser = require("body-parser");
+const excel = require("exceljs");
 const passport = require("passport");
 const flash = require("connect-flash");
+const bodyParser = require("body-parser");
 const session = require("express-session");
 
 // Offical variable
@@ -31,6 +32,9 @@ const joinus_pool = require("./libs/pool");
 const initPassport = require("./libs/passportConfig");
 initPassport(passport);
 
+// Custom variables
+const admin_render = { records: [{ ERROR: "DATABASE ERROR!" }] };
+
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -46,7 +50,7 @@ function checkNotAuthenticated(req, res, next) {
   res.redirect("/admin");
 }
 
-// Router
+// Routers
 app.get("/", (req, res) => {
   res.render("pages/index");
 });
@@ -80,11 +84,82 @@ app.get("/login", checkNotAuthenticated, (req, res) => {
 app.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/admin",
     failureRedirect: "/login",
     failureFlash: true,
   })
 );
+
+app.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/admin");
+  });
+});
+
+app.get("/admin", checkAuthenticated, (req, res) => {
+  joinus_pool.pool_select.query("SELECT * FROM joinus", (err, result, fields) => {
+    if (err) {
+      console.error(err);
+      admin_render.records = [{ ERROR: err.sqlMessage }];
+    } else {
+      if (result.length) {
+        admin_render.records = result;
+      } else {
+        admin_render.records = [{ ERROR: "The database is empty!" }];
+      }
+    }
+    res.render("pages/admin");
+  });
+});
+
+// Export mysql data
+app.get("/export", checkAuthenticated, (req, res) => {
+  // Create sheets
+  const punch_export = JSON.parse(JSON.stringify(admin_render.records));
+  const workbook = new excel.Workbook();
+  const worksheet = workbook.addWorksheet("报名表单");
+  const worksheet_columns = [];
+  Object.keys(punch_export[0]).forEach(function (prop) {
+    worksheet_columns.push({
+      header: prop,
+      key: prop,
+    });
+  });
+  worksheet.columns = worksheet_columns;
+  worksheet.addRows(punch_export);
+
+  // Wrap text and alignment
+  Object.keys(punch_export[0]).forEach((prop) => {
+    worksheet.getColumn(prop).width = 15;
+    worksheet.getColumn(prop).alignment = { vertical: "middle", horizontal: "center" };
+    if (prop === "自我介绍") {
+      worksheet.getColumn(prop).width = 100;
+      worksheet.getColumn(prop).alignment = { vertical: "middle", horizontal: "left", wrapText: true };
+    } else {
+      if (["邮箱", "学号", "学院", "专业"].includes(prop)) {
+        worksheet.getColumn(prop).width = 20;
+      }
+    }
+  });
+  // Header style
+  worksheet.getRow(1).font = {
+    bold: true,
+    color: { argb: "00008B" },
+  };
+
+  // Export excel
+  res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+  res.setHeader(
+    "Content-Disposition",
+    "attachment; filename=" + "punch-" + new Date().toISOString().split("T")[0] + ".xlsx"
+  );
+  return workbook.xlsx.write(res).then(function () {
+    res.status(200).end();
+  });
+});
 
 // Listening on port 8084
 const port = process.env.PORT || 8084;
