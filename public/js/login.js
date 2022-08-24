@@ -1,4 +1,3 @@
-import formValidator from "./formValidator.js";
 const fv = new formValidator(".form");
 
 // name validation

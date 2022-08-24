@@ -104,6 +104,7 @@ body {
 /* error message */
 .form-element .err-msg {
   color: red;
+  font-size: 1.6rem;
   margin-left: 0.5rem;
   margin-top: 1rem;
 }

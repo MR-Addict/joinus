@@ -1,4 +1,4 @@
-export default class formValidator {
+class formValidator {
   constructor(selector) {
     this.form = document.querySelector(selector);
     this.inputsWithErrors = new Set();
