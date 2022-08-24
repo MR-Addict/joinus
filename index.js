@@ -49,7 +49,7 @@ function checkNotAuthenticated(req, res, next) {
 
 // Routers
 app.get("/", (req, res) => {
-  res.render("pages/index");
+  res.render("pages/fail");
 });
 
 app.post("/", (req, res) => {
@@ -158,7 +158,10 @@ app.get("/export", checkAuthenticated, (req, res) => {
         res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         res.setHeader(
           "Content-Disposition",
-          "attachment; filename=" + "punch-" + new Date().toISOString().split("T")[0] + ".xlsx"
+          "attachment; filename=" +
+            "%E6%8A%A5%E5%90%8D%E6%80%BB%E8%A1%A8-" +
+            new Date().toISOString().split("T")[0] +
+            ".xlsx"
         );
         return workbook.xlsx.write(res).then(function () {
           res.status(200).end();

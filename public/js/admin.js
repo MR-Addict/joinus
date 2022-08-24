@@ -31,11 +31,11 @@ doughnut_options.plugins.title.text = "男女比";
 const genderChart = new Chart(myChart2, {
   type: "doughnut", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
-    labels: ["男", "女"],
+    labels: ["女", "男"],
     datasets: [
       {
         data: statistics_data.slice(2, 4),
-        backgroundColor: ["rgba(54, 162, 235)", "rgba(255, 99, 132)"],
+        backgroundColor: ["rgba(255, 99, 132)", "rgba(54, 162, 235)"],
       },
     ],
   },

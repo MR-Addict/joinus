@@ -3,7 +3,7 @@ const doughnut_options = {
   responsive: true,
   plugins: {
     tooltip: {
-      enabled: true,
+      enabled: false,
     },
     title: {
       display: true,
@@ -48,7 +48,7 @@ const bar_options = {
   },
   plugins: {
     tooltip: {
-      enabled: true,
+      enabled: false,
     },
     title: {
       display: true,
