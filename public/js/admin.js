@@ -6,7 +6,7 @@ const myChart4 = document.getElementById("myChart4").getContext("2d");
 const submitChart = new Chart(myChart1, {
   type: "doughnut", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
-    labels: ["今日提交", "总提交"],
+    labels: ["今日提交", "所有提交"],
     datasets: [
       {
         data: [15, 45],

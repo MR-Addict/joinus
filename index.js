@@ -32,9 +32,6 @@ const joinus_pool = require("./libs/pool");
 const initPassport = require("./libs/passportConfig");
 initPassport(passport);
 
-// Custom variables
-const admin_render = { records: [{ ERROR: "DATABASE ERROR!" }] };
-
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -100,64 +97,78 @@ app.get("/logout", (req, res, next) => {
 });
 
 app.get("/admin", checkAuthenticated, (req, res) => {
-  joinus_pool.pool_select.query("SELECT * FROM joinus", (err, result, fields) => {
+  const admin_render = { statistics_data: { ERROR: "DATABASE ERROR!" } };
+  joinus_pool.pool_select.query(joinus_pool.statistics_command, (err, result, fields) => {
     if (err) {
       console.error(err);
-      admin_render.records = [{ ERROR: err.sqlMessage }];
+      admin_render.statistics_data = { statistics_data: err.sqlMessage };
     } else {
       if (result.length) {
-        admin_render.records = result;
+        admin_render.statistics_data = JSON.parse(JSON.stringify(result));
       } else {
-        admin_render.records = [{ ERROR: "The database is empty!" }];
+        admin_render.statistics_data = { statistics_data: "The database is empty!" };
       }
     }
-    res.render("pages/admin");
+    res.render("pages/admin", admin_render);
   });
 });
 
 // Export mysql data
 app.get("/export", checkAuthenticated, (req, res) => {
-  // Create sheets
-  const punch_export = JSON.parse(JSON.stringify(admin_render.records));
-  const workbook = new excel.Workbook();
-  const worksheet = workbook.addWorksheet("报名表单");
-  const worksheet_columns = [];
-  Object.keys(punch_export[0]).forEach(function (prop) {
-    worksheet_columns.push({
-      header: prop,
-      key: prop,
-    });
-  });
-  worksheet.columns = worksheet_columns;
-  worksheet.addRows(punch_export);
-
-  // Wrap text and alignment
-  Object.keys(punch_export[0]).forEach((prop) => {
-    worksheet.getColumn(prop).width = 15;
-    worksheet.getColumn(prop).alignment = { vertical: "middle", horizontal: "center" };
-    if (prop === "自我介绍") {
-      worksheet.getColumn(prop).width = 100;
-      worksheet.getColumn(prop).alignment = { vertical: "middle", horizontal: "left", wrapText: true };
+  joinus_pool.pool_select.query("SELECT * FROM joinus", (err, result, fields) => {
+    if (err) {
+      console.error(err);
     } else {
-      if (["邮箱", "学号", "学院", "专业"].includes(prop)) {
-        worksheet.getColumn(prop).width = 20;
+      // export data
+      if (result.length) {
+        // Create sheets
+        const punch_export = JSON.parse(JSON.stringify(result));
+        const workbook = new excel.Workbook();
+        const worksheet = workbook.addWorksheet("报名表单");
+        const worksheet_columns = [];
+        Object.keys(punch_export[0]).forEach(function (prop) {
+          worksheet_columns.push({
+            header: prop,
+            key: prop,
+          });
+        });
+        worksheet.columns = worksheet_columns;
+        worksheet.addRows(punch_export);
+
+        // Wrap text and alignment
+        Object.keys(punch_export[0]).forEach((prop) => {
+          worksheet.getColumn(prop).width = 15;
+          worksheet.getColumn(prop).alignment = { vertical: "middle", horizontal: "center" };
+          if (prop === "自我介绍") {
+            worksheet.getColumn(prop).width = 100;
+            worksheet.getColumn(prop).alignment = { vertical: "middle", horizontal: "left", wrapText: true };
+          } else {
+            if (["邮箱", "学号", "学院", "专业"].includes(prop)) {
+              worksheet.getColumn(prop).width = 20;
+            }
+          }
+        });
+        // Header style
+        worksheet.getRow(1).font = {
+          bold: true,
+          color: { argb: "00008B" },
+        };
+
+        // Export excel
+        res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        res.setHeader(
+          "Content-Disposition",
+          "attachment; filename=" + "punch-" + new Date().toISOString().split("T")[0] + ".xlsx"
+        );
+        return workbook.xlsx.write(res).then(function () {
+          res.status(200).end();
+        });
+      }
+      // databse is empty
+      else {
+        console.error("The database is empty!");
       }
     }
-  });
-  // Header style
-  worksheet.getRow(1).font = {
-    bold: true,
-    color: { argb: "00008B" },
-  };
-
-  // Export excel
-  res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-  res.setHeader(
-    "Content-Disposition",
-    "attachment; filename=" + "punch-" + new Date().toISOString().split("T")[0] + ".xlsx"
-  );
-  return workbook.xlsx.write(res).then(function () {
-    res.status(200).end();
   });
 });
 

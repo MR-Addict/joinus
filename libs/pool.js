@@ -1,5 +1,7 @@
 const mysql = require("mysql");
 const users = [];
+const statistics_command =
+  "SELECT (SELECT COUNT(*) FROM `joinus` WHERE DATE(`提交时间`)=CURRENT_DATE) AS '今日提交',(SELECT COUNT(*) FROM `joinus`) AS '所有提交',(SELECT COUNT(*) FROM `joinus` WHERE `性别`='男') AS '男',(SELECT COUNT(*) FROM `joinus` WHERE `性别`='女') AS '女',(SELECT COUNT(*) FROM `joinus` WHERE `第一志愿`='组织策划部') AS '组策',(SELECT COUNT(*) FROM `joinus` WHERE `第一志愿`='技术开发部') AS '技术',(SELECT COUNT(*) FROM `joinus` WHERE `第一志愿`='科普活动部') AS '科普',(SELECT COUNT(*) FROM `joinus` WHERE `第一志愿`='新闻宣传部') AS '新宣',(SELECT COUNT(*) FROM `joinus` WHERE `第一志愿`='对外联络部') AS '外联',(SELECT COUNT(*) FROM `joinus` WHERE `第一志愿`='双创联合服务部') AS '双创',(SELECT COUNT(*) FROM `joinus` WHERE `第二志愿`='组织策划部') AS '组策',(SELECT COUNT(*) FROM `joinus` WHERE `第二志愿`='技术开发部') AS '技术',(SELECT COUNT(*) FROM `joinus` WHERE `第二志愿`='科普活动部') AS '科普',(SELECT COUNT(*) FROM `joinus` WHERE `第二志愿`='新闻宣传部') AS '新宣',(SELECT COUNT(*) FROM `joinus` WHERE `第二志愿`='对外联络部') AS '外联',(SELECT COUNT(*) FROM `joinus` WHERE `第二志愿`='双创联合服务部') AS '双创'";
 
 const pool_insert = mysql.createPool({
   connectionLimit: 4,
@@ -35,4 +37,4 @@ pool_select.query("SELECT * FROM admin", function (err, result, fields) {
   }
 });
 
-module.exports = { pool_insert, pool_select, users };
+module.exports = { pool_insert, pool_select, users, statistics_command };
