@@ -35,7 +35,7 @@ const genderChart = new Chart(myChart2, {
     datasets: [
       {
         data: statistics_data.slice(2, 4),
-        backgroundColor: ["rgba(255, 99, 132)", "rgba(54, 162, 235)"],
+        backgroundColor: ["rgba(54, 162, 235)", "rgba(255, 99, 132)"],
       },
     ],
   },
