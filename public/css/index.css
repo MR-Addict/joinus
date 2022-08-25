@@ -207,4 +207,7 @@ footer {
   .form-header h1 {
     font-size: 2.5rem;
   }
+  .form button:hover {
+    color: var(--pri-white);
+  }
 }

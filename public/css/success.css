@@ -8,6 +8,7 @@
 
 :root {
   --pri-bcg: linear-gradient(160deg, #c621ef, #164cbe);
+  --pri-yellow: #fcb045;
   --pri-white: #ffffff;
   --pri-blue: #1c3879;
   --pri-green: #309e9b;
@@ -59,17 +60,25 @@ body {
 }
 
 .container button {
-  width: 10rem;
+  width: 13rem;
   height: 5rem;
+  color: var(--pri-white);
+  background-color: var(--pri-green);
+
   border: 0;
   outline: none;
-  color: var(--pri-white);
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 800;
   border-radius: 1rem;
   cursor: pointer;
-  background-color: var(--pri-green);
   margin-bottom: 2rem;
+
+  transition: 0.1s;
+}
+
+.container button:hover {
+  font-size: 2rem;
+  color: var(--pri-yellow);
 }
 
 /* footer */
@@ -80,5 +89,8 @@ footer {
 @media screen and (max-width: 800px) {
   html {
     font-size: 55%;
+  }
+  .container button:hover {
+    color: var(--pri-white);
   }
 }
