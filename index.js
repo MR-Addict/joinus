@@ -97,16 +97,17 @@ app.get("/logout", (req, res, next) => {
 });
 
 app.get("/admin", checkAuthenticated, (req, res) => {
-  const admin_render = { statistics_data: { ERROR: "DATABASE ERROR!" } };
+  const admin_render = { statistics_data: [{ ERROR: "DATABASE ERROR!" }] };
   joinus_pool.pool_select.query(joinus_pool.statistics_command, (err, result, fields) => {
     if (err) {
       console.error(err);
       admin_render.statistics_data = { statistics_data: err.sqlMessage };
     } else {
       if (result.length) {
-        admin_render.statistics_data = JSON.parse(JSON.stringify(result));
+        admin_render.statistics_data = [{ ERROR: "DATABASE ERROR!" }];
+        console.log(admin_render.statistics_data);
       } else {
-        admin_render.statistics_data = { statistics_data: "The database is empty!" };
+        admin_render.statistics_data = [{ ERROR: "DATABASE EMPTY!" }];
       }
     }
     res.render("pages/admin", admin_render);
