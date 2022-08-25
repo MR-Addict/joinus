@@ -201,4 +201,10 @@ footer {
   html {
     font-size: 55%;
   }
+  .form {
+    margin: 3vh 0 1rem;
+  }
+  .form-header h1 {
+    font-size: 2.5rem;
+  }
 }
