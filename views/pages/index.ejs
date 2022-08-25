@@ -3,108 +3,165 @@
   <head>
     <%- include('../partials/header'); %>
     <link rel="stylesheet" href="/css/index.css" />
-    <script src="/js/formValidator.js" defer></script>
     <script src="/js/index.js" defer></script>
   </head>
   <body>
     <div class="form">
       <div class="form-header">
-        <h1>欢迎加入校科协!!!</h1>
+        <h1>欢迎加入校大学生科协!!!</h1>
         <div></div>
         <p>你可以填写以下表单加入我们</p>
       </div>
       <form action="/" method="post" id="form">
-        <!-- name -->
-        <div class="form-element">
-          <label for="姓名"><img src="/images/user.svg" alt="姓名" />姓名</label>
-          <input type="text" id="姓名" name="姓名" />
-          <div class="err-msg"></div>
+        <!-- step 1 -->
+        <div class="steps step1">
+          <div class="form-progress">
+            <div class="progress-icon">
+              <div class="progress-line"></div>
+              <div class="progress-circle">1/4</div>
+              <div class="progress-line"></div>
+            </div>
+            <div class="progress-text">个人信息</div>
+          </div>
+          <!-- name -->
+          <div class="form-element">
+            <label for="姓名"><img src="/images/user.svg" alt="姓名" />姓名</label>
+            <input type="text" id="姓名" name="姓名" />
+            <div class="err-msg"></div>
+          </div>
+          <!-- gender -->
+          <div class="form-element">
+            <label for="性别"><img src="/images/user.svg" alt="性别" />性别</label>
+            <select name="性别" id="性别">
+              <option value="男">男</option>
+              <option value="女">女</option>
+            </select>
+          </div>
+          <div class="form-button-group" style="margin-top: 1rem">
+            <button type="button" id="step1-next-but">下一步</button>
+          </div>
         </div>
-        <!-- gender -->
-        <div class="form-element">
-          <label for="性别"><img src="/images/user.svg" alt="性别" />性别</label>
-          <select name="性别" id="性别">
-            <option value="男">男</option>
-            <option value="女">女</option>
-          </select>
+        <!-- step 2 -->
+        <div class="steps step2">
+          <div class="form-progress">
+            <div class="progress-icon">
+              <div class="progress-line"></div>
+              <div class="progress-circle">2/4</div>
+              <div class="progress-line"></div>
+            </div>
+            <div class="progress-text">联系方式</div>
+          </div>
+          <!-- phone number -->
+          <div class="form-element">
+            <label for="手机"><img src="/images/phone.svg" alt="手机" />手机</label>
+            <input type="number" id="手机" name="手机" />
+            <div class="err-msg"></div>
+          </div>
+          <!-- QQ -->
+          <div class="form-element">
+            <label for="QQ"><img src="/images/qq.svg" alt="QQ" />QQ</label>
+            <input type="number" id="QQ" name="QQ" />
+            <div class="err-msg"></div>
+          </div>
+          <!-- email -->
+          <div class="form-element">
+            <label for="邮箱"><img src="/images/email.svg" alt="邮箱" />邮箱</label>
+            <input type="text" id="邮箱" name="邮箱" />
+            <div class="err-msg"></div>
+          </div>
+          <div class="form-button-group">
+            <button type="button" id="step2-pre-but">上一步</button>
+            <button type="button" id="step2-next-but">下一步</button>
+          </div>
         </div>
-        <!-- phone number -->
-        <div class="form-element">
-          <label for="手机"><img src="/images/phone.svg" alt="手机" />手机</label>
-          <input type="number" id="手机" name="手机" />
-          <div class="err-msg"></div>
+        <!-- step 3 -->
+        <div class="steps step3">
+          <div class="form-progress">
+            <div class="progress-icon">
+              <div class="progress-line"></div>
+              <div class="progress-circle">3/4</div>
+              <div class="progress-line"></div>
+            </div>
+            <div class="progress-text">专业信息</div>
+          </div>
+          <!-- sutudent id -->
+          <div class="form-element">
+            <label for="学号"><img src="/images/id.svg" alt="学号" />学号</label>
+            <input type="number" id="学号" name="学号" />
+            <div class="err-msg"></div>
+          </div>
+          <!-- academy -->
+          <div class="form-element">
+            <label for="学院"><img src="/images/academy.svg" alt="学院" />学院</label>
+            <input type="text" id="学院" name="学院" />
+            <div class="err-msg"></div>
+          </div>
+          <!-- profession -->
+          <div class="form-element">
+            <label for="专业"><img src="/images/profession.svg" alt="专业" />专业</label>
+            <input type="text" id="专业" name="专业" />
+            <div class="err-msg"></div>
+          </div>
+          <div class="form-button-group">
+            <button type="button" id="step3-pre-but">上一步</button>
+            <button type="button" id="step3-next-but">下一步</button>
+          </div>
         </div>
-        <!-- QQ -->
-        <div class="form-element">
-          <label for="QQ"><img src="/images/qq.svg" alt="QQ" />QQ</label>
-          <input type="number" id="QQ" name="QQ" />
-          <div class="err-msg"></div>
+        <!-- step 4 -->
+        <div class="steps step4">
+          <div class="form-progress">
+            <div class="progress-icon">
+              <div class="progress-line"></div>
+              <div class="progress-circle">4/4</div>
+              <div class="progress-line"></div>
+            </div>
+            <div class="progress-text">志愿填报</div>
+          </div>
+          <!-- option 1 -->
+          <div class="form-element">
+            <label for="第一志愿"><img src="/images/options.svg" alt="第一志愿" />第一志愿</label>
+            <select name="第一志愿" id="第一志愿">
+              <option value="组织策划部">组织策划部</option>
+              <option value="技术开发部">技术开发部</option>
+              <option value="科普活动部">科普活动部</option>
+              <option value="新闻宣传部">新闻宣传部</option>
+              <option value="对外联络部">对外联络部</option>
+              <option value="双创联合服务部">双创联合服务部</option>
+            </select>
+            <div class="err-msg"></div>
+          </div>
+          <!-- option2 -->
+          <div class="form-element">
+            <label for="第二志愿"><img src="/images/options.svg" alt="第二志愿" />第二志愿</label>
+            <select name="第二志愿" id="第二志愿">
+              <option value="组织策划部">组织策划部</option>
+              <option value="技术开发部">技术开发部</option>
+              <option value="科普活动部">科普活动部</option>
+              <option value="新闻宣传部">新闻宣传部</option>
+              <option value="对外联络部">对外联络部</option>
+              <option value="双创联合服务部">双创联合服务部</option>
+            </select>
+            <div class="err-msg"></div>
+          </div>
+          <!-- check -->
+          <div class="form-element">
+            <label for="调剂"><img src="/images/check.svg" alt="调剂" />是否服从调剂</label>
+            <select name="调剂" id="调剂">
+              <option value="是">是</option>
+              <option value="否">否</option>
+            </select>
+          </div>
+          <!-- introduce -->
+          <div class="form-element">
+            <label for="自我介绍"><img src="/images/introduce.svg" alt="自我介绍" />自我介绍</label>
+            <textarea type="text" id="自我介绍" name="自我介绍"></textarea>
+            <div class="err-msg"></div>
+          </div>
+          <div class="form-button-group">
+            <button type="button" id="step4-pre-but">上一步</button>
+            <button type="submit">提交</button>
+          </div>
         </div>
-        <!-- email -->
-        <div class="form-element">
-          <label for="邮箱"><img src="/images/email.svg" alt="邮箱" />邮箱</label>
-          <input type="text" id="邮箱" name="邮箱" />
-          <div class="err-msg"></div>
-        </div>
-        <!-- sutudent id -->
-        <div class="form-element">
-          <label for="学号"><img src="/images/id.svg" alt="学号" />学号</label>
-          <input type="number" id="学号" name="学号" />
-          <div class="err-msg"></div>
-        </div>
-        <!-- academy -->
-        <div class="form-element">
-          <label for="学院"><img src="/images/academy.svg" alt="学院" />学院</label>
-          <input type="text" id="学院" name="学院" />
-          <div class="err-msg"></div>
-        </div>
-        <!-- profession -->
-        <div class="form-element">
-          <label for="专业"><img src="/images/profession.svg" alt="专业" />专业</label>
-          <input type="text" id="专业" name="专业" />
-          <div class="err-msg"></div>
-        </div>
-        <!-- option 1 -->
-        <div class="form-element">
-          <label for="第一志愿"><img src="/images/options.svg" alt="第一志愿" />第一志愿</label>
-          <select name="第一志愿" id="第一志愿">
-            <option value="组织策划部">组织策划部</option>
-            <option value="技术开发部">技术开发部</option>
-            <option value="科普活动部">科普活动部</option>
-            <option value="新闻宣传部">新闻宣传部</option>
-            <option value="对外联络部">对外联络部</option>
-            <option value="双创联合服务部">双创联合服务部</option>
-          </select>
-          <div class="err-msg"></div>
-        </div>
-        <!-- option2 -->
-        <div class="form-element">
-          <label for="第二志愿"><img src="/images/options.svg" alt="第二志愿" />第二志愿</label>
-          <select name="第二志愿" id="第二志愿">
-            <option value="组织策划部">组织策划部</option>
-            <option value="技术开发部">技术开发部</option>
-            <option value="科普活动部">科普活动部</option>
-            <option value="新闻宣传部">新闻宣传部</option>
-            <option value="对外联络部">对外联络部</option>
-            <option value="双创联合服务部">双创联合服务部</option>
-          </select>
-          <div class="err-msg"></div>
-        </div>
-        <!-- check -->
-        <div class="form-element">
-          <label for="调剂"><img src="/images/check.svg" alt="调剂" />是否服从调剂</label>
-          <select name="调剂" id="调剂">
-            <option value="是">是</option>
-            <option value="否">否</option>
-          </select>
-        </div>
-        <!-- introduce -->
-        <div class="form-element">
-          <label for="自我介绍"><img src="/images/introduce.svg" alt="自我介绍" />自我介绍</label>
-          <textarea type="text" id="自我介绍" name="自我介绍"></textarea>
-          <div class="err-msg"></div>
-        </div>
-        <button type="submit">提交</button>
       </form>
     </div>
     <%- include('../partials/footer'); %>
