@@ -104,7 +104,7 @@ app.get("/admin", checkAuthenticated, (req, res) => {
       admin_render.statistics_data = { statistics_data: err.sqlMessage };
     } else {
       if (result.length) {
-        admin_render.statistics_data = [{ ERROR: "DATABASE ERROR!" }];
+        admin_render.statistics_data = JSON.parse(JSON.stringify(result));
         console.log(admin_render.statistics_data);
       } else {
         admin_render.statistics_data = [{ ERROR: "DATABASE EMPTY!" }];
