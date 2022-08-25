@@ -10,7 +10,7 @@
   --pri-bcg: linear-gradient(160deg, #c621ef, #164cbe);
   --pri-white: #ffffff;
   --pri-blue: #1c3879;
-  --pri-green: #24a19c;
+  --pri-green: #309e9b;
 }
 
 html {
@@ -34,7 +34,7 @@ body {
 /* form style */
 .container {
   width: 90%;
-  max-width: 50rem;
+  max-width: 60rem;
   border-radius: 1rem;
   background: var(--pri-blue);
   padding: 1rem;
@@ -53,8 +53,8 @@ body {
 }
 
 .container .msg-img {
-  width: 12rem;
-  height: 12rem;
+  width: 15rem;
+  height: 15rem;
   margin: 2rem auto 5rem;
 }
 
