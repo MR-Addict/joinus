@@ -8,7 +8,7 @@ on:
 
 jobs:
   server:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: SSH Action
         uses: appleboy/ssh-action@master
