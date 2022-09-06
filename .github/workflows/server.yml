@@ -19,7 +19,7 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script_stop: true
           script: |
-            cd /home/$USER/Projects/Punch
+            cd /home/$USER/Projects/Joinus
             git pull
             docker-compose down
             docker rmi mraddict063/joinus
