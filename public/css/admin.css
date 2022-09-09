@@ -101,7 +101,7 @@ body {
 }
 
 /* header */
-.container h1 {
+.container .header h1 {
   font-size: 4rem;
   font-weight: 600;
   margin: 1rem auto;
