@@ -97,7 +97,7 @@ app.get("/logout", (req, res, next) => {
 });
 
 app.get("/admin", checkAuthenticated, (req, res) => {
-  const admin_render = { statistics_data: [{ ERROR: "DATABASE ERROR!" }] };
+  const admin_render = { statistics_data: [{ ERROR: "DATABASE ERROR!" }], login_user: req.user.username };
   joinus_pool.pool_select.query(joinus_pool.statistics_command, (err, result, fields) => {
     if (err) {
       console.error(err);
@@ -105,7 +105,6 @@ app.get("/admin", checkAuthenticated, (req, res) => {
     } else {
       if (result.length) {
         admin_render.statistics_data = JSON.parse(JSON.stringify(result));
-        console.log(admin_render.statistics_data);
       } else {
         admin_render.statistics_data = [{ ERROR: "DATABASE EMPTY!" }];
       }
@@ -116,6 +115,10 @@ app.get("/admin", checkAuthenticated, (req, res) => {
 
 // Export mysql data
 app.get("/export", checkAuthenticated, (req, res) => {
+  if (!["admin"].includes(req.user.username)) {
+    res.send("You have no access!");
+    return;
+  }
   joinus_pool.pool_select.query("SELECT * FROM joinus", (err, result, fields) => {
     if (err) {
       console.error(err);
