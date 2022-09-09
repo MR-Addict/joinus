@@ -11,7 +11,7 @@
   <body>
     <div class="container">
       <div class="icons">
-        <% if(['admin'].includes(login_user)){ %>
+        <% if(login_user!=='visitor'){ %>
         <button type="button" onclick="location.href = '/export'" title="导出Excel表格">
           <img src="/images/export.svg" alt="export" />
           <p>导出Excel</p>

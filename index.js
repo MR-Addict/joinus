@@ -118,7 +118,7 @@ app.get("/admin", checkAuthenticated, (req, res) => {
 
 // Export mysql data
 app.get("/export", checkAuthenticated, (req, res) => {
-  if (!["admin"].includes(req.user.username)) {
+  if (req.user.username === "visitor") {
     res.send("You have no access!");
     return;
   }
