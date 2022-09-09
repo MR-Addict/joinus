@@ -100,11 +100,6 @@ body {
   font-weight: bold;
 }
 
-/* statistics_data */
-.container #sta {
-  display: none;
-}
-
 /* header */
 .container h1 {
   font-size: 4rem;

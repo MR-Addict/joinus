@@ -96,21 +96,24 @@ app.get("/logout", (req, res, next) => {
   });
 });
 
-app.get("/admin", checkAuthenticated, (req, res) => {
-  const admin_render = { statistics_data: [{ ERROR: "DATABASE ERROR!" }], login_user: req.user.username };
+app.post("/insight", checkAuthenticated, (req, res) => {
   joinus_pool.pool_select.query(joinus_pool.statistics_command, (err, result, fields) => {
     if (err) {
       console.error(err);
-      admin_render.statistics_data = { statistics_data: err.sqlMessage };
+      res.send("Databse error");
     } else {
       if (result.length) {
-        admin_render.statistics_data = JSON.parse(JSON.stringify(result));
+        res.send(JSON.parse(JSON.stringify(result[0])));
       } else {
-        admin_render.statistics_data = [{ ERROR: "DATABASE EMPTY!" }];
+        res.send("Databse empty");
       }
     }
-    res.render("pages/admin", admin_render);
   });
+});
+
+app.get("/admin", checkAuthenticated, (req, res) => {
+  const admin_render = { login_user: req.user.username };
+  res.render("pages/admin", admin_render);
 });
 
 // Export mysql data

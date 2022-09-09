@@ -3,13 +3,13 @@ const myChart2 = document.getElementById("myChart2").getContext("2d");
 const myChart3 = document.getElementById("myChart3").getContext("2d");
 const myChart4 = document.getElementById("myChart4").getContext("2d");
 
-const statistics_data = document
-  .getElementById("sta")
-  .innerText.split(" ")
-  .filter((item) => item !== "")
-  .map((str) => {
-    return Number(str);
-  });
+const xmlHttp = new XMLHttpRequest();
+xmlHttp.open("POST", "/insight", false);
+xmlHttp.send(null);
+const insight = JSON.parse(xmlHttp.response);
+const statistics_data = Object.keys(insight).map(function (key) {
+  return insight[key];
+});
 
 doughnut_options.plugins.title.text = "提交";
 Chart.register(ChartDataLabels);
