@@ -106,17 +106,26 @@ app.get("/logout", (req, res, next) => {
 });
 
 app.post("/insight", checkAuthenticated, (req, res) => {
-  joinus_pool.pool_select.query(joinus_pool.statistics_command, (err, result, fields) => {
+  const insight_render = { single: "", days: "" };
+  joinus_pool.pool_select.query(joinus_pool.statistics_command.single_cmd, (err, result, fields) => {
     if (err) {
       console.error(err);
-      res.send("Databse error");
     } else {
       if (result.length) {
-        res.send(JSON.parse(JSON.stringify(result[0])));
-      } else {
-        res.send("Databse empty");
+        insight_render.single = JSON.parse(JSON.stringify(result[0]));
       }
     }
+    // select days
+    joinus_pool.pool_select.query(joinus_pool.statistics_command.days_cmd, (err, result, fields) => {
+      if (err) {
+        console.error(err);
+      } else {
+        if (result.length) {
+          insight_render.days = JSON.parse(JSON.stringify(result));
+        }
+      }
+      res.send(insight_render);
+    });
   });
 });
 

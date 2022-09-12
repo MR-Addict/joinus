@@ -2,14 +2,44 @@ const myChart1 = document.getElementById("myChart1").getContext("2d");
 const myChart2 = document.getElementById("myChart2").getContext("2d");
 const myChart3 = document.getElementById("myChart3").getContext("2d");
 const myChart4 = document.getElementById("myChart4").getContext("2d");
+const myChart5 = document.getElementById("myChart5").getContext("2d");
 
 const xmlHttp = new XMLHttpRequest();
 xmlHttp.open("POST", "/insight", false);
 xmlHttp.send(null);
 const insight = JSON.parse(xmlHttp.response);
-const statistics_data = Object.keys(insight).map(function (key) {
-  return insight[key];
+const statistics_data = Object.keys(insight.single).map(function (key) {
+  return insight.single[key];
 });
+
+function getInsightDaysValues() {
+  const array = [];
+
+  getInsightDaysKeys().forEach((prop) => {
+    array.push(0);
+    insight.days.forEach((day) => {
+      if (new Date(day.日期.slice(5)).getTime() === new Date(prop).getTime()) {
+        array.pop();
+        array.push(Number(day.提交次数));
+      }
+    });
+  });
+  return array;
+}
+
+function getInsightDaysKeys() {
+  const array = [];
+  const days_length = 10;
+  for (
+    dt = new Date(new Date().setDate(new Date().getDate() - days_length + 1));
+    dt <= new Date();
+    dt.setDate(dt.getDate() + 1)
+  ) {
+    const temp_date = dt.toISOString().slice(5, 10);
+    array.push(Number(temp_date.split("-")[0]) + "-" + Number(temp_date.split("-")[1]));
+  }
+  return array;
+}
 
 doughnut_options.plugins.title.text = "提交";
 Chart.register(ChartDataLabels);
@@ -85,4 +115,21 @@ const groupChart2 = new Chart(myChart4, {
   },
   plugins: [ChartDataLabels],
   options: bar_options,
+});
+
+line_options.plugins.title.text = "提交曲线";
+const daySubmit = new Chart(myChart5, {
+  type: "line", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
+  data: {
+    labels: getInsightDaysKeys(),
+    datasets: [
+      {
+        data: getInsightDaysValues(),
+        fill: false,
+        borderColor: "rgb(75, 192, 192, 0.5)",
+        tension: 0.1,
+      },
+    ],
+  },
+  options: line_options,
 });
