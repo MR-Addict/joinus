@@ -32,6 +32,8 @@ const joinus_pool = require("./libs/pool");
 const initPassport = require("./libs/passportConfig");
 initPassport(passport);
 
+const suspend_time = "2022-10-13 23:59:59";
+
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -49,22 +51,29 @@ function checkNotAuthenticated(req, res, next) {
 
 // Routers
 app.get("/", (req, res) => {
-  res.render("pages/index");
+  if (new Date().getTime() > new Date(suspend_time).getTime())
+    res.render("pages/suspend", { message: "截止日期：" + suspend_time });
+  else res.render("pages/index");
 });
 
 app.post("/", (req, res) => {
+  if (new Date().getTime() > new Date(suspend_time).getTime()) {
+    res.render("pages/suspend", { message: suspend_time });
+    return;
+  }
+
   const joinus_records = req.body;
   const joinus_sql = "INSERT INTO joinus SET ?";
   const joinus_validate_result = joinus_schema.form_schema.validate(joinus_records);
 
   if (joinus_validate_result.error) {
     console.error(joinus_validate_result.error);
-    res.status(502).render("pages/fail");
+    res.status(502).render("pages/fail", { message: "错误原因：你提交的表单存在格式错误" });
   } else {
     joinus_pool.pool_insert.query(joinus_sql, joinus_records, (error, result) => {
       if (error) {
         console.error(error);
-        res.status(502).render("pages/fail");
+        res.status(502).render("pages/fail", { message: "错误原因：你的表单保存到数据库错误" });
       } else {
         console.log(new Date().toLocaleString() + " New submit");
         res.render("pages/success");

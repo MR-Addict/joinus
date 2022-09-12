@@ -63,28 +63,6 @@ body {
   margin: 3rem 0;
 }
 
-.container button {
-  width: 13rem;
-  height: 5rem;
-  color: var(--pri-white);
-  background-color: var(--pri-green);
-
-  border: 0;
-  outline: none;
-  font-size: 1.8rem;
-  font-weight: 800;
-  border-radius: 1rem;
-  cursor: pointer;
-  margin-bottom: 2rem;
-
-  transition: 0.1s;
-}
-
-.container button:hover {
-  font-size: 2rem;
-  color: var(--pri-yellow);
-}
-
 /* footer */
 footer {
   margin: 1rem 0 2rem;
