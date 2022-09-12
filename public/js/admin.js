@@ -151,7 +151,7 @@ const daySubmit = new Chart(myChart6, {
         data: getInsightDaysValues(),
         fill: false,
         borderColor: "rgb(75, 192, 192)",
-        tension: 0.5,
+        tension: 0,
       },
     ],
   },
