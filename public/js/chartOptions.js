@@ -68,10 +68,7 @@ const bar_options = {
       align: "center",
       color: "#000",
       formatter: (value, context) => {
-        const dataPoints = context.dataset.data;
-        const sum = parseInt(dataPoints.reduce((prop, a) => prop + a, 0));
-        if (sum) return `${value}人\n${((value / sum) * 100).toFixed(1)}%`;
-        else return "error";
+        return `${value}人`;
       },
       labels: {
         title: {
