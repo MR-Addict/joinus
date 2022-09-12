@@ -3,6 +3,7 @@ const myChart2 = document.getElementById("myChart2").getContext("2d");
 const myChart3 = document.getElementById("myChart3").getContext("2d");
 const myChart4 = document.getElementById("myChart4").getContext("2d");
 const myChart5 = document.getElementById("myChart5").getContext("2d");
+const myChart6 = document.getElementById("myChart6").getContext("2d");
 
 const xmlHttp = new XMLHttpRequest();
 xmlHttp.open("POST", "/insight", false);
@@ -29,7 +30,7 @@ function getInsightDaysValues() {
 
 function getInsightDaysKeys() {
   const array = [];
-  const days_length = 10;
+  const days_length = 7;
   for (
     dt = new Date(new Date().setDate(new Date().getDate() - days_length + 1));
     dt <= new Date();
@@ -117,8 +118,31 @@ const groupChart2 = new Chart(myChart4, {
   options: bar_options,
 });
 
+bar_options.plugins.title.text = "所有志愿";
+const groupChart3 = new Chart(myChart5, {
+  type: "bar", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
+  data: {
+    labels: ["组策", "技术", "科普", "新宣", "外联", "双创"],
+    datasets: [
+      {
+        data: statistics_data.slice(16, 22),
+        backgroundColor: [
+          "rgba(255, 99, 132)",
+          "rgba(54, 162, 235)",
+          "rgba(255, 206, 86)",
+          "rgba(75, 192, 192)",
+          "rgba(153, 102, 255)",
+          "rgba(255, 159, 64)",
+        ],
+      },
+    ],
+  },
+  plugins: [ChartDataLabels],
+  options: bar_options,
+});
+
 line_options.plugins.title.text = "提交曲线";
-const daySubmit = new Chart(myChart5, {
+const daySubmit = new Chart(myChart6, {
   type: "line", // bar,horizontalBar, pie, line, doughnut, radar, polarArea
   data: {
     labels: getInsightDaysKeys(),

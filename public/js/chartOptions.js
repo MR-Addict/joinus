@@ -114,7 +114,7 @@ const line_options = {
       align: "center",
       color: "#555",
       formatter: (value, context) => {
-        return `${value}`;
+        return `${value}人`;
       },
       labels: {
         title: {

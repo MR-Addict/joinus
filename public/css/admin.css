@@ -115,21 +115,13 @@ body {
 
 .chart-row .chart-element {
   margin: 2rem 3rem;
-  height: 45vh;
-  width: 45vh;
+  height: 40vh;
+  width: 40vh;
   border-radius: 2rem;
   background: var(--pri-white);
 }
 
-.chart-row .chart-line {
-  margin: 2rem 3rem;
-  height: 45vh;
-  width: 97vh;
-  border-radius: 2rem;
-  background: var(--pri-white);
-}
-
-.chart-row canvas {
+.chart-element canvas {
   padding: 1rem;
 }
 
@@ -147,8 +139,5 @@ footer {
   }
   .chart-row {
     flex-direction: column;
-  }
-  .chart-row .chart-line {
-    width: 45vh;
   }
 }
