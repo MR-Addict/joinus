@@ -32,7 +32,7 @@ const joinus_pool = require("./libs/pool");
 const initPassport = require("./libs/passportConfig");
 initPassport(passport);
 
-const suspend_time = "2022-10-13 23:59:59";
+const suspend_time = "2022-10-16 12:00:00";
 
 // Passport
 app.use(passport.initialize());
@@ -51,14 +51,14 @@ function checkNotAuthenticated(req, res, next) {
 
 // Routers
 app.get("/", (req, res) => {
-  if (new Date().getTime() > new Date(suspend_time).getTime())
-    res.render("pages/suspend", { message: "截止日期：" + suspend_time });
+  if (new Date().getTime() < new Date(suspend_time).getTime())
+    res.render("pages/suspend", { message: suspend_time + " 后可重新报名" });
   else res.render("pages/index");
 });
 
 app.post("/", (req, res) => {
-  if (new Date().getTime() > new Date(suspend_time).getTime()) {
-    res.render("pages/suspend", { message: suspend_time });
+  if (new Date().getTime() < new Date(suspend_time).getTime()) {
+    res.render("pages/suspend", { message: suspend_time + " 后可重新报名" });
     return;
   }
 
